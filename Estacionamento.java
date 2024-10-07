@@ -31,8 +31,12 @@ public class Estacionamento {
     public void cadastrarVeiculo(String placa, String modelo, double entradaEmHoras){
         for(int i = 0; i < estacionados.length; i++){
             if (estacionados[i] == null) {
-                estacionados[i] = new Veiculo(placa, modelo, entradaEmHoras);
-                System.out.println("Veículo estacionado!");
+                if (entradaEmHoras<24) {
+                    estacionados[i] = new Veiculo(placa, modelo, entradaEmHoras);
+                    System.out.println("Veículo estacionado!");
+                }else{
+                    System.out.println("Horario invalido!");
+                }
                 break;
             }
         }
@@ -50,10 +54,14 @@ public class Estacionamento {
         for(int i = 0; i < capacidadeMaxima; i++){
             if (estacionados[i].getPlacaDoVeiculo().equalsIgnoreCase(placa)) {
                 achou = true;
-                estacionados[i].setHoraDeSaida(saidaEmHoras);
-                System.out.println("Valor a se pagar: $"+estacionados[i].valor());
-                estacionados[i] = null;
-                reorganizarVeiculos();
+                if (saidaEmHoras<24) {
+                    estacionados[i].setHoraDeSaida(saidaEmHoras);
+                    System.out.println("Valor a se pagar: $"+estacionados[i].valor());
+                    estacionados[i] = null;
+                    reorganizarVeiculos();
+                }else{
+                    System.out.println("Horario invalido!");
+                }
                 break;
             }
         }
