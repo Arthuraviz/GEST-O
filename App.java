@@ -29,6 +29,7 @@ public class App {
                 System.out.println("Invalido!");
                 break;
             }
+            sc.close();
             
             
 
